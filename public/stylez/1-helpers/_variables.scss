@@ -1,0 +1,20 @@
+// ******************************
+// BREAKPOINTS
+// ******************************
+// Example: @media (max-width: $breakpoint-tablet)
+$breakpoint-desktop: 1200px;
+$breakpoint-laptop: 950px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 400px;
+
+// ******************************
+// FONTS
+// ******************************
+$opensans: 'OpenSans', 'Helvetica', serif;
+$opensans-light: 'OpenSans-Light', 'Helvetica', serif;
+$opensans-medium: 'OpenSans-Medium', 'Helvetica', serif;
+$opensans-bold: 'OpenSans-Bold', 'Helvetica', serif;
+
+$bebasneue: 'BebasNeue', 'Helvetica', serif;
+$bebasneue-light: 'BebasNeue-Light', 'Helvetica', serif;
+$bebasneue-bold: 'BebasNeue-Bold', 'Helvetica', serif;

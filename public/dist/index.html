@@ -1,62 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="ccvApp">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Current Cuts Vinyl</title>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/5.3.2/sweetalert2.css">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="./dist/styles.f285acfa.css" media="screen" title="no title">
+    <link rel="stylesheet" href="./dist/styles.css" media="screen" title="no title">
+  </head>
 
-</head>
+  <body class="wrapper">
+    <header>
+      <nav>
+        <div class="ham-search-container w25">
+          <div class="hamburger-icon scale-nav">
+            <div class="nbar1"></div>
+            <div class="nbar2"></div>
+            <div class="nbar3"></div>
+          </div>
+          <i class="material-icons search-icon scale-nav">search</i>
+        </div>
 
-<body>
+        <!-- LOGO -->
+        <div class="logo w50">Current Cuts</div>
 
-<header>
-  <nav>
-    <div class="ham-search-container w25">
-      <div class="hamburger-icon scale-nav">
-        <div class="nbar1"></div>
-        <div class="nbar2"></div>
-        <div class="nbar3"></div>
-      </div>
+        <div class="login-cart-container w25">
+          <check-logged-in class="checkloggedin">
 
-      <i class="material-icons search-icon scale-nav">search</i>
+            <!-- MOBILE -->
+            <i class="material-icons hideDesktop scale-nav" ui-sref="login">person</i>
+            <i class="material-icons hideDesktop scale-nav" ui-sref="userfavorites">favorite_border</i>
 
-    </div>
-    <div class="logo w50">
-      <img src="img/logo.png" alt="currentcuts.com" ui-sref="home">
+            <!-- DESKTOP -->
+            <a ng-if="username" class="login hideMobile" ng-click="openModal('user-account-modal')">{{username}}</a>
+            <a ng-if="!username" class="login hideMobile" ng-click="openModal('user-login-modal')">Login</a>
+            <i class="material-icons hideMobile" ui-sref="userfavorites">favorite_border</i>
 
-    </div>
-
-    <div class="login-cart-container w25">
-
-      <check-logged-in class="checkloggedin">
-
-
-        <!-- MOBILE -->
-        <i class="material-icons hideDesktop scale-nav" ui-sref="login">person</i>
-        <i class="material-icons hideDesktop scale-nav" ui-sref="userfavorites">favorite_border</i>
-
-
-        <!-- DESKTOP -->
-        <a ng-if="username" class="login hideMobile" ng-click="openModal('user-account-modal')">{{username}}</a>
-        <a ng-if="!username" class="login hideMobile" ng-click="openModal('user-login-modal')">Login</a>
-        <i class="material-icons hideMobile" ui-sref="userfavorites">favorite_border</i>
-
-        <modal id="user-login-modal" signup-login>
-            <div class="mymodal">
+            <modal id="user-login-modal" signup-login>
+              <div class="mymodal">
                 <div class="modal-body">
                   <span class="close" ng-click="closeMyModal('user-login-modal')">&times;</span>
                   <!-- <div class="login-container" ng-if="!username" check-logged-in> -->
                   <div class="login-container" ng-show="existingUserLogin" ng-hide="forgotPassword">
-
                     <h1 class="center">Login</h1>
-
                     <form method="get" action="/auth/facebook">
                       <button type="submit" class="btn-facebook">Log In with Facebook</button>
                     </form>
@@ -79,13 +69,9 @@
 
                       <p ng-click="existingUserLogin = false" class="center pointer">Need an account?</p>
                     </form>
-
-
-
                   </div>
 
-                <div class="login-container" ng-hide="existingUserLogin || forgotPassword">
-
+                  <div class="login-container" ng-hide="existingUserLogin || forgotPassword">
                     <h1 class="center">Sign Up</h1>
 
                     <form method="get" action="/auth/facebook">
@@ -97,18 +83,18 @@
                     </div>
 
                     <form class="login-modal" ng-submit="signUp(signupFirstname, signupLastname, signupEmail, signupPassword, signupConfirmPassword)">
-                    <div class="split">
-                      <div class="h">
-                        <label ng-class="{red: signupFirstnameR}">First Name * <span ng-class="{none: !signupFirstnameR, errordisplay: signupFirstnameR}">- required</span></label>
-                        <input id="fname"type="text" ng-model="signupFirstname">
+                      <div class="split">
+                        <div class="h">
+                          <label ng-class="{red: signupFirstnameR}">First Name * <span ng-class="{none: !signupFirstnameR, errordisplay: signupFirstnameR}">- required</span></label>
+                          <input id="fname"type="text" ng-model="signupFirstname">
+                        </div>
+
+                        <div class="h">
+                          <label ng-class="{red: signupLastnameR}">Last Name * <span ng-class="{none: !signupLastnameR, errordisplay: signupLastnameR}">- required</span></label>
+                          <input id="lname"type="text" ng-model="signupLastname">
+                        </div>
                       </div>
 
-                      <div class="h">
-                        <label ng-class="{red: signupLastnameR}">Last Name * <span ng-class="{none: !signupLastnameR, errordisplay: signupLastnameR}">- required</span></label>
-                        <input id="lname"type="text" ng-model="signupLastname">
-                      </div>
-
-                    </div>
                       <label ng-class="{red: signupEmailR}">Email * <span ng-class="{none: !signupEmailR, errordisplay: signupEmailR}">- required</span></label>
                       <input type="text" ng-model="signupEmail">
 
@@ -119,109 +105,94 @@
                       <input type="password" ng-model="signupConfirmPassword">
 
                       <p class="red center message">{{signupMessage}}</p>
-
                       <button name="submit" class="big-btn btn">Submit</button>
-
                       <p ng-click="existingUserLogin = true" class="center pointer" >Already a member?</p>
-
                     </form>
-
-
                   </div>
 
                   <div ng-hide="existingUserLogin || !existingUserLogin" ng-show="forgotPassword">
                     <h1 class="center">Forgot Password</h1>
                     <p class="center message">Enter your email to receive a reset link</p>
                     <form class="login-modal" ng-submit="resetPassword(resetPassEmail)">
-
                       <label ng-class="{red: resetEmailR}">Email <span ng-class="{none: !resetEmailR, errordisplay: resetEmailR}">- required</span></label>
                       <input type="text" ng-model="resetPassEmail">
 
                       <p class="red center message">{{resetMessage}}</p>
-
                       <button class="btn big-btn">Submit</button>
-
                       <p ng-click="existingUserLogin = true; forgotPassword = false" class="center pointer" >Cancel</p>
-
                     </form>
-
                   </div>
                 </div>
-            </div>
-            <div class="modal-background"></div>
-        </modal>
+              </div>
+              <div class="modal-background"></div>
+            </modal>
 
-        <modal id="user-account-modal">
-          <div class="user-modal">
-            <div class="modal-body">
-              <span  class="close" ng-click="closeMyModal('user-account-modal')">&times;</span>
+            <modal id="user-account-modal">
+              <div class="user-modal">
+                <div class="modal-body">
+                  <span  class="close" ng-click="closeMyModal('user-account-modal')">&times;</span>
 
-              <button style="margin-top: 30px;"class="btn big-btn" ng-click="closeMyModal('user-account-modal');" ui-sref="accountsettings">Account Settings</button>
-              <br><br>
+                  <button style="margin-top: 30px;"class="btn big-btn" ng-click="closeMyModal('user-account-modal');" ui-sref="accountsettings">Account Settings</button>
+                  <br><br>
 
-              <button class="btn big-btn" ng-click="closeMyModal('user-account-modal');" ui-sref="orderhistory">Order History</button>
-              <br><br>
+                  <button class="btn big-btn" ng-click="closeMyModal('user-account-modal');" ui-sref="orderhistory">Order History</button>
+                  <br><br>
 
-              <form action="/auth/logout" method="get">
-                <button type="submit" class="btn big-btn">Log Out</button>
-              </form>
-            </div>
-          </div>
-          <div class="modal-background"></div>
-        </modal>
+                  <form action="/auth/logout" method="get">
+                    <button type="submit" class="btn big-btn">Log Out</button>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-background"></div>
+            </modal>
 
-        <i class="material-icons scale-nav" ui-sref="cart">shopping_cart</i>
-        <checkitemsincart>
-          <div ng-if="itemsInCart" class="cart-amount" ui-sref="cart" >
-            {{itemsInCart}}
-          </div>
-        </checkitemsincart>
-      </check-logged-in>
+            <i class="material-icons scale-nav" ui-sref="cart">shopping_cart</i>
+            <checkitemsincart>
+              <div ng-if="itemsInCart" class="cart-amount" ui-sref="cart" >
+                {{itemsInCart}}
+              </div>
+            </checkitemsincart>
+          </check-logged-in>
+        </div>
+      </nav>
 
+      <div class="search-box-container">
+        <!-- <form ng-submit="searchProduct(searchTerm)" ui-sref="search({search:searchTerm})"> -->
+          <input class="search-box" type="search" name="" placeholder="Search Decals" ng-model="searchTerm" >
+          <button class="btn search-btn" type="button" name="button" ui-sref="search({search:searchTerm})" >Search</button>
+        <!-- </form> -->
+      </div>
 
+      <ul class="main-nav">
+        <li><a ui-sref="category({catname:'adventure'})">Adventure</a></li>
+        <li><a ui-sref="category({catname:'sports'})">Sports</a></li>
+        <li><a ui-sref="category({catname:'schools'})">Schools</a></li>
+        <!-- <li><a href="#">Shop</a></li> -->
+        <!-- <li></li> -->
+        <!-- <li><a href="#">Shop</a></li> -->
+        <!-- <li><a href="#">Shop</a></li> -->
+        <!-- <li><a href="#">About</a></li> -->
+        <li><a ui-sref="contact">Contact</a></li>
+      </ul>
+    </header>
 
-    </div>
+    <!-- min height div -->
+    <ui-view class="main"></ui-view>
 
-  </nav>
-  <div class="search-box-container">
-    <!-- <form ng-submit="searchProduct(searchTerm)" ui-sref="search({search:searchTerm})"> -->
-      <input class="search-box" type="search" name="" placeholder="Search Decals" ng-model="searchTerm" >
-      <button class="btn search-btn" type="button" name="button" ui-sref="search({search:searchTerm})" >Search</button>
-
-    <!-- </form> -->
-  </div>
-    <ul class="main-nav">
-      <li><a ui-sref="category({catname:'adventure'})">Adventure</a></li>
-      <li><a ui-sref="category({catname:'sports'})">Sports</a></li>
-      <li><a ui-sref="category({catname:'schools'})">Schools</a></li>
-      <!-- <li><a href="#">Shop</a></li> -->
-      <!-- <li></li> -->
-      <!-- <li><a href="#">Shop</a></li> -->
-      <!-- <li><a href="#">Shop</a></li> -->
-      <!-- <li><a href="#">About</a></li> -->
-      <li><a ui-sref="contact">Contact</a></li>
-    </ul>
-</header>
-
-<!-- min height div -->
-  <ui-view class="sticky-footer"></ui-view>
-
-
-<footer>
-  <div class="footer-container">
-    <ul>
-      <li><a ui-sref="home">Home</a></li>
-      <li><a ui-sref="login">Login</a></li>
-      <li><a ui-sref="cart">Cart</a></li>
-      <li><a ui-sref="contact">Contact</a></li>
-        <!-- if admin, show admin link -->
-      <admin-auth>
-        <li ng-if="auth"><a ui-sref="admin">Admin</a></li>
-      </admin-auth>
-    </ul>
-  </div>
-</footer>
-
+    <footer>
+      <div class="footer-container">
+        <ul>
+          <li><a ui-sref="home">Home</a></li>
+          <li><a ui-sref="login">Login</a></li>
+          <li><a ui-sref="cart">Cart</a></li>
+          <li><a ui-sref="contact">Contact</a></li>
+            <!-- if admin, show admin link -->
+          <admin-auth>
+            <li ng-if="auth"><a ui-sref="admin">Admin</a></li>
+          </admin-auth>
+        </ul>
+      </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
@@ -232,7 +203,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="./dist/js/bundle.js"></script>
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-
 
     <script>
       $(document).ready(function(){
@@ -251,10 +221,6 @@
           $(".search-box-container").toggleClass("open");
         })
       })
-
     </script>
-
-</body>
-
-
+  </body>
 </html>

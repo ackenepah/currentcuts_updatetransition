@@ -1,0 +1,38 @@
+* {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+img {
+  width: 100%;
+}
+
+header {
+  background-color: red;
+
+  .logo {
+    font-family: $bebasneue-bold;
+    font-size: 48px;
+  }
+}
+
+.main {
+  flex: 1;
+}
+
+#user-login-modal,
+.modal-body,
+.search-box-container,
+.main-nav,
+.hideMobile {
+  display: none;
+}
+
+footer {
+  background-color: yellow;
+}

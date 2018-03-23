@@ -20,7 +20,7 @@ const app = module.exports = express();
 // app.set('db', conn); // add your connection to express
 // var db = app.get('db'); // declare a db object for requests
 let db = null;
-const connectionInfo = "postgres://postgres:@localhost/ccv"
+const connectionInfo = "postgres://postgres:@localhost:7137/ccv"
 // const connectionInfo = config.psqlConnString;
 
 
